@@ -8,14 +8,14 @@ public class P102C {
         final var sc = new Scanner(System.in);
         final var line = sc.nextLine();
 
-        // LIVEA
+        // LIVE A
         final var liveACount = Integer.parseInt(line);
         final var liveAArray = IntStream.range(0, liveACount)
                 .map(i -> Integer.parseInt(sc.nextLine()))
                 .boxed()
                 .toList();
 
-        // LIVEB
+        // LIVE B
         final var liveBCount = Integer.parseInt(sc.nextLine());
         final var liveBArray = IntStream.range(0, liveBCount)
                 .map(i -> Integer.parseInt(sc.nextLine()))
