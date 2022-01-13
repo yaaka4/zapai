@@ -15,10 +15,7 @@ public class P088C {
         final var purchaseCount = infoArray[1];
 
         final var purchasePriceList = IntStream.range(0, purchaseCount)
-                .mapToObj(i ->
-                        Stream.of(sc.nextLine().split(" "))
-                                .mapToInt(Integer::parseInt)
-                                .toArray())
+                .mapToObj(i -> returnIntArray(sc, " "))
                 .map(array -> priceArray[array[0] - 1] * array[1])
                 .toList();
 
@@ -38,5 +35,4 @@ public class P088C {
                 .mapToInt(Integer::parseInt)
                 .toArray();
     }
-
 }
