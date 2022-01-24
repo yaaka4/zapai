@@ -1,3 +1,5 @@
+package rankUp.B;
+
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringJoiner;

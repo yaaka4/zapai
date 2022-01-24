@@ -1,3 +1,5 @@
+package rankUp.C;
+
 import java.util.Scanner;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
