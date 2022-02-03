@@ -40,10 +40,10 @@ public class Step4 {
             var nextY = currentY;
             var nextX = currentX;
             var nextDirect = currentDirect;
-            var stepCount = baseStepCount;
+            var stepCount = 1;
 
             var result = "";
-            for(; stepCount >= 0; stepCount--) {
+            for(; stepCount <= baseStepCount; stepCount++) {
                 if (nextDirect.equals("N") && rl.equals("R")) {
                     nextX = currentX + stepCount;
                     nextDirect = "E";
@@ -69,25 +69,32 @@ public class Step4 {
                     nextY = currentY + stepCount;
                     nextDirect = "S";
                 }
-                if(checkOutAreaBlock(nextX, nextY, gameMap)) {
+                if(!checkOutAreaBlock(nextX, nextY, gameMap)) {
                     // 範囲外・障害物チェック
-                    nextY = currentY;
-                    nextX = currentX;
-                    nextDirect = currentDirect;
-                    continue;
+                    result = nextY + " " + nextX;
+                    if(stepCount != baseStepCount) {
+                        nextY = currentY;
+                        nextX = currentX;
+                        nextDirect = currentDirect;
+                    }
+                } else {
+                    if(stepCount == 1) {
+                        result = currentY + " " + currentX;
+                    }
+                    System.out.println(result);
+                    break;
                 }
-                result = nextY + " " + nextX;
-                System.out.println(result);
-                break;
             }
-            if(stepCount != baseStepCount) {
+            if(stepCount == baseStepCount + 1) {
+                System.out.println(result);
+                currentY = nextY;
+                currentX = nextX;
+                currentDirect = nextDirect;
+            } else {
                 result = "Stop";
                 System.out.println(result);
                 break;
             }
-            currentY = nextY;
-            currentX = nextX;
-            currentDirect = nextDirect;
         }
 
         sc.close();
@@ -100,7 +107,7 @@ public class Step4 {
 
     private static boolean checkOutAreaBlock(int nextX, int nextY, List<String[]> gameMap) {
         return nextX < 0 || nextY < 0
-                || nextX >= gameMap.get(0).length - 1 || nextY >= gameMap.size() - 1
+                || nextX > gameMap.get(0).length - 1 || nextY > gameMap.size() - 1
                 || "#".equals(gameMap.get(nextY)[nextX]);
     }
 }
