@@ -3,3 +3,8 @@
 /bin/
 *.test
 *.swp
+*.class
+*.bin
+*.lock
+target
+gradle
