@@ -1,43 +1,48 @@
 package Leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class ValidParentheses {
     public boolean isValid(String s) {
         boolean result = true;
-        for (int i = 0; i < s.length(); i++) {
-            var tmp = s.charAt(0);
-            switch (tmp) {
-                case '(' -> {
-                    if(s.contains(")")) {
-                        s.substring(0, 1);
-                        s.replace(")", "");
-                        continue;
-                    }
+        Deque<String> stack = new ArrayDeque<>();
+        for (var c : s.split("")) {
+            if (c.equals("(") || c.equals("{") || c.equals("[")) {
+                stack.push(c);
+            } else {
+                if(stack.isEmpty()) {
                     result = false;
+                    stack.push("*");
                     break;
                 }
-                case '{' -> {
-                    if(s.contains("}")) {
-                        s.substring(0, 1);
-                        s.replace(")", "");
-                        continue;
-                    }
+                var last = stack.pop();
+                if (last.equals("(") && !c.equals(")")) {
                     result = false;
+                    stack.push("*");
                     break;
                 }
-                case '[' -> {
-                    if(s.contains("]")) {
-                        s.substring(0, 1);
-                        s.replace(")", "");
-                        continue;
-                    }
+                if (last.equals("{") && !c.equals("}")) {
                     result = false;
+                    stack.push("*");
                     break;
                 }
-                default -> {
-                    ;
+                if (last.equals("[") && !c.equals("]")) {
+                    result = false;
+                    stack.push("*");
+                    break;
                 }
             }
         }
+        if (stack.isEmpty()) {
+            result = true;
+        } else {
+            result = false;
+        }
+        if (s.length() <= 1) {
+            result = false;
+        }
+
         return result;
     }
 
