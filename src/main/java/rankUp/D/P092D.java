@@ -1,7 +1,6 @@
 package rankUp.D;
 
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class P092D {
     public static void main(String[] args) {
